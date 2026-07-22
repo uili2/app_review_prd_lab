@@ -1573,8 +1573,8 @@ function buildRequirement(
     return null;
   }
 
-  const targetVersion = chooseTargetVersion(finding, sourceReviewIds.length);
   const priority = choosePriority(finding, sourceReviewIds.length);
+  const targetVersion = chooseTargetVersion(priority);
   const uncertaintyNote = finding.uncertainty ? ` 不确定性：${finding.uncertainty}` : "";
   const appSourceNote = appSource ? `（${appSource}）` : "";
   versionCounters[targetVersion] += 1;
@@ -1694,16 +1694,12 @@ function uniqueStrings(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
 }
 
-function chooseTargetVersion(finding: Finding, sourceCount: number): TargetVersion {
-  if (sourceCount < 2 || finding.confidence < 0.55) {
-    return "Later";
-  }
-
-  if (finding.severity === "critical" || (finding.severity === "high" && finding.confidence >= 0.7)) {
+function chooseTargetVersion(priority: RequirementPriority): TargetVersion {
+  if (priority === "P0") {
     return "V1";
   }
 
-  if (finding.severity === "high" || finding.severity === "medium") {
+  if (priority === "P1") {
     return "V2";
   }
 

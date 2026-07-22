@@ -274,8 +274,9 @@ Data Source：US App Store authentic user reviews
 ## V1.0 Critical Experience Fixes（2-4 weeks｜P0 Core）
 版本目标：解决用户集中吐槽、阻碍基础使用、导致大量差评的核心体验问题
 
-### {REQ-ID} 【P0】{需求标题}
+### {REQ-ID} 【{priority}】{需求标题}
 Target Version：V1.0 / V2.0 / V3.0
+Priority：{priority}
 Finding ID：{findingId}
 Source Review IDs：{sourceReviewIds}
 #### 1. Data Traceability（溯源信息）
