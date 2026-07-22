@@ -1,0 +1,155 @@
+{
+  "cacheType": "offline-demo",
+  "syntheticData": true,
+  "cacheNotice": "Offline demo cache for reviewers. It is not loaded automatically and does not replace live App Store RSS collection or model-driven analysis.",
+  "cachedAt": "2026-07-22T00:00:00.000Z",
+  "appName": "Offline Demo Fitness App",
+  "analysisGoal": "Evaluate subscription conversion, workout usability, version 4.2.0 regressions, and low-rating reviews.",
+  "dataSource": "Synthetic JSON/CSV import sample, not real App Store data.",
+  "stats": {
+    "rawReviews": 10,
+    "cleanedReviews": 8,
+    "removedEmptyReviews": 1,
+    "deduplicatedReviews": 1
+  },
+  "findings": [
+    {
+      "findingId": "finding-001",
+      "title": "Workout timer reliability blocks core session completion",
+      "summary": "Several low-rating reviews report that workout and rest timers freeze or stop, especially around version 4.2.0 and lock-screen usage.",
+      "severity": "critical",
+      "confidence": 0.72,
+      "supportingReviewIds": ["demo-review-001", "demo-review-006"],
+      "evidenceQuotes": [
+        {
+          "reviewId": "demo-review-001",
+          "quote": "the workout timer freezes halfway through a session"
+        },
+        {
+          "reviewId": "demo-review-006",
+          "quote": "the workout timer stops and the rest timer never alerts me"
+        }
+      ],
+      "contradictionReviewIds": ["demo-review-008"],
+      "uncertainty": "Low sample size. One review says reinstalling fixed the crash, so root cause needs device and lifecycle validation."
+    },
+    {
+      "findingId": "finding-002",
+      "title": "Subscription and trial messaging reduce conversion clarity",
+      "summary": "Users do not understand what is free, when the trial renews, or why the paywall appears before value is clear.",
+      "severity": "high",
+      "confidence": 0.63,
+      "supportingReviewIds": ["demo-review-002", "demo-review-007"],
+      "evidenceQuotes": [
+        {
+          "reviewId": "demo-review-002",
+          "quote": "I cannot tell which workouts are free anymore"
+        },
+        {
+          "reviewId": "demo-review-007",
+          "quote": "The trial page does not explain renewal timing clearly"
+        }
+      ],
+      "contradictionReviewIds": [],
+      "uncertainty": "Low sample size. The sample indicates confusion, not exact conversion loss."
+    },
+    {
+      "findingId": "finding-003",
+      "title": "Workout usability needs better in-session readability and device sync",
+      "summary": "Users mention small in-session text and unreliable Apple Watch sync, affecting workout usability and progress trust.",
+      "severity": "medium",
+      "confidence": 0.56,
+      "supportingReviewIds": ["demo-review-004", "demo-review-005"],
+      "evidenceQuotes": [
+        {
+          "reviewId": "demo-review-004",
+          "quote": "The timer and next exercise text are too small"
+        },
+        {
+          "reviewId": "demo-review-005",
+          "quote": "Apple Watch sync misses completed workouts"
+        }
+      ],
+      "contradictionReviewIds": [],
+      "uncertainty": "Low sample size and two related but distinct usability problems."
+    }
+  ],
+  "requirements": [
+    {
+      "requirementId": "REQ-v1-01",
+      "findingId": "finding-001",
+      "sourceReviewIds": ["demo-review-001", "demo-review-006", "demo-review-008"],
+      "problem": "Users can lose workout logs because timers freeze or stop during active sessions.",
+      "goal": "Ensure workout and rest timers continue reliably across lock-screen and foreground/background transitions.",
+      "nonGoals": ["Do not redesign the full workout player in V1.0."],
+      "acceptanceCriteria": [
+        "Timer continues for a 30-minute workout after lock/unlock cycles on supported iOS versions.",
+        "Rest alert fires within 2 seconds of the expected time after screen lock.",
+        "Interrupted sessions preserve elapsed time and workout log state after app resume."
+      ],
+      "priority": "P0",
+      "targetVersion": "V1.0"
+    },
+    {
+      "requirementId": "REQ-v2-01",
+      "findingId": "finding-002",
+      "sourceReviewIds": ["demo-review-002", "demo-review-007"],
+      "problem": "Users cannot understand free versus paid access or trial renewal timing before subscribing.",
+      "goal": "Make subscription value, free access, and trial renewal timing clear before payment intent.",
+      "nonGoals": ["Do not change subscription pricing in V2.0."],
+      "acceptanceCriteria": [
+        "Paywall states free access scope, trial length, renewal date, and cancellation path before purchase CTA.",
+        "At least one app value screen is visible before the first subscription prompt in the beginner flow.",
+        "QA verifies copy appears correctly for monthly and annual plans."
+      ],
+      "priority": "P1",
+      "targetVersion": "V2.0"
+    },
+    {
+      "requirementId": "REQ-v3-01",
+      "findingId": "finding-003",
+      "sourceReviewIds": ["demo-review-004", "demo-review-005"],
+      "problem": "In-session readability and progress sync issues reduce workout confidence.",
+      "goal": "Improve long-distance readability and make device sync failures visible and recoverable.",
+      "nonGoals": ["Do not rebuild the entire Apple Watch app in V3.0."],
+      "acceptanceCriteria": [
+        "Workout player offers a large-text mode where timer and next exercise labels are readable at 2 meters.",
+        "Sync status shows success or retry state within 10 seconds after workout completion.",
+        "Manual retry is available when watch sync fails."
+      ],
+      "priority": "P2",
+      "targetVersion": "V3.0"
+    }
+  ],
+  "testCases": [
+    {
+      "testCaseId": "TC-REQ-v1-01-01",
+      "requirementId": "REQ-v1-01",
+      "sourceReviewIds": ["demo-review-001", "demo-review-006"],
+      "scenario": "Verify timer reliability through lock-screen transitions.",
+      "expectedResult": "Workout and rest timers continue accurately and session logs are preserved."
+    },
+    {
+      "testCaseId": "TC-REQ-v2-01-01",
+      "requirementId": "REQ-v2-01",
+      "sourceReviewIds": ["demo-review-002", "demo-review-007"],
+      "scenario": "Verify subscription page explains free access, trial length, renewal timing, and cancellation path.",
+      "expectedResult": "User can identify what is free and when billing starts before tapping purchase CTA."
+    },
+    {
+      "testCaseId": "TC-REQ-v3-01-01",
+      "requirementId": "REQ-v3-01",
+      "sourceReviewIds": ["demo-review-004", "demo-review-005"],
+      "scenario": "Verify large-text workout mode and watch sync recovery.",
+      "expectedResult": "Timer is readable from workout distance and failed sync exposes retry state."
+    }
+  ],
+  "traceability": {
+    "status": "warning",
+    "summary": "All IDs in this synthetic cache resolve inside the cache. Warning is intentional because the cache is not real App Store evidence.",
+    "warnings": [
+      "Offline demo cache uses synthetic reviews and should not be used for product decisions."
+    ],
+    "failures": []
+  }
+}

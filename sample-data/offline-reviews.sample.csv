@@ -1,0 +1,11 @@
+id,title,body,rating,version,updatedAt,author,country
+demo-review-001,Workout timer freezes,"Since version 4.2.0 the workout timer freezes halfway through a session and I lose the whole log.",1,4.2.0,2026-07-01T08:00:00.000Z,offline-user-001,us
+demo-review-002,Subscription wall is confusing,"I cannot tell which workouts are free anymore. The subscription screen appears before I understand the value.",2,4.2.0,2026-07-02T10:15:00.000Z,offline-user-002,us
+demo-review-003,Great guided sessions,"The guided sessions are clear and motivating. I like the new beginner plans.",5,4.1.8,2026-07-03T12:30:00.000Z,offline-user-003,us
+demo-review-004,Hard to read during workouts,"The timer and next exercise text are too small when my phone is on the floor during a workout.",2,4.2.0,2026-07-04T09:45:00.000Z,offline-user-004,us
+demo-review-005,Watch sync is unreliable,"Apple Watch sync misses completed workouts, so my weekly progress is wrong.",2,4.2.0,2026-07-05T16:20:00.000Z,offline-user-005,us
+demo-review-006,Timer stops on lock screen,"If the screen locks, the workout timer stops and the rest timer never alerts me.",1,4.2.0,2026-07-06T18:05:00.000Z,offline-user-006,us
+demo-review-007,Trial details need clarity,"The trial page does not explain renewal timing clearly, so I cancelled before starting.",2,4.1.9,2026-07-07T11:10:00.000Z,offline-user-007,us
+demo-review-008,Reinstall helped,"Version 4.2.0 crashed once, but reinstalling fixed it and the workouts run fine now.",4,4.2.0,2026-07-08T14:40:00.000Z,offline-user-008,us
+demo-review-009,, ,3,4.2.0,2026-07-09T08:00:00.000Z,offline-user-009,us
+demo-review-010,Timer stops on lock screen,"If the screen locks, the workout timer stops and the rest timer never alerts me.",1,4.2.0,2026-07-06T18:05:00.000Z,offline-user-006,us

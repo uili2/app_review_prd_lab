@@ -51,7 +51,11 @@ app-review-prd-lab/
 │   ├── model-findings.ts          # 千问主题发现实现与输出校验
 │   ├── model-prd.ts               # 千问 PRD 生成实现与输出校验
 │   └── traceability.ts            # review → finding → requirement → test case 追溯校验
-├── public/                        # 静态资源
+├── sample-data/                   # JSON/CSV 导入样本与离线演示缓存
+│   ├── README.md                  # 样本数据使用说明
+│   ├── offline-reviews.sample.json
+│   ├── offline-reviews.sample.csv
+│   └── offline-cache.sample.json
 ├── .env.example                   # 环境变量示例
 ├── .env.local                     # 本地环境变量（不提交）
 ├── next.config.js                 # Next.js 配置
@@ -340,7 +344,7 @@ Apple RSS 数据非实时同步，新评论可能需要数小时才会出现在 
 | PRD 固定结构校验 | `lib/model-prd.ts` | 校验 PRD 是否包含版本总览、V1.0/V2.0/V3.0 三个固定版本章节 |
 | Requirement ID 覆盖校验 | `lib/model-prd.ts` | 校验 PRD 是否包含所有输入的 `REQ-v1/v2/v3-xx` |
 | Finding ID 覆盖校验 | `lib/model-prd.ts` | 校验每条需求是否保留对应的 `findingId` |
-| Source Review ID 覆盖校验 | `lib/model-prd.ts` | 校验 PRD 是否完整保留所有 `sourceReviewIds` |
+| Source Review ID 覆盖校验 | `lib/model-prd.ts` | 校验 PRD 是否保留本次发送给 PRD 模型的 `sourceReviewIds`；完整 `sourceReviewIds` 仍由本地 traceability validator 校验 |
 | 需求模块校验 | `lib/model-prd.ts` | 校验每条需求是否包含溯源、真实问题、根因、边界、方案、验收、风险七个模块 |
 
 ### 6.4 追溯校验（`lib/traceability.ts`）
@@ -452,6 +456,21 @@ review-002,体验不错,界面很清爽，运行流畅,5,2.0.0,2026-06-28,user45
 
 **本项目中的任何示例数据、缓存文件或演示数据，仅用于展示界面布局、交互效果、格式验证和测试场景，不能替代真实的 App Store 评论采集能力。**
 
+仓库提供以下离线样本文件：
+
+| 文件 | 用途 | 标识 |
+| --- | --- | --- |
+| `sample-data/offline-reviews.sample.json` | 可在页面通过 JSON 导入的评论样本 | 合成离线演示数据 |
+| `sample-data/offline-reviews.sample.csv` | 可在页面通过 CSV 导入的评论样本 | 合成离线演示数据 |
+| `sample-data/offline-cache.sample.json` | 外部网络不可用时查看 findings、requirements、test cases、traceability 的结果形态 | `cacheType: "offline-demo"`、`syntheticData: true` |
+
+使用方式：
+
+1. 本地运行项目后，在页面选择 `sample-data/offline-reviews.sample.json` 或 `sample-data/offline-reviews.sample.csv` 导入；
+2. 输入新的分析目标后点击「开始分析」；
+3. 若当前网络或模型不可用，可直接打开 `sample-data/offline-cache.sample.json` 查看离线演示结果结构；
+4. 离线缓存不会被应用自动加载，也不会影响新 App Store 链接或新 JSON/CSV 数据集的分析。
+
 在实际分析场景中，请使用以下两种方式之一获取真实数据：
 
 1. 通过前端「采集美国区评论」功能，从 Apple RSS 实时拉取；
@@ -463,9 +482,9 @@ review-002,体验不错,界面很清爽，运行流畅,5,2.0.0,2026-06-28,user45
 
 ## 8. 常见问题排查
 
-### Q1：设置 3 页为什么只返回 100 条评论？
+### Q1：采集数量设置为 150，为什么实际少于 150 条？
 
-Apple RSS 每页最多 50 条，但实际返回数量由该 App 在美国区当前可用的最新评论数决定。3 页不代表固定 150 条。界面显示「原始 100 条 · 清洗 100 条」说明 RSS 当前只返回了 100 条，去重后没有进一步减少。
+Apple RSS 每页最多 50 条，但实际返回数量由该 App 在美国区当前可用的最新评论数决定。系统会按「采集数量」继续分页，直到达到用户设置的上限、达到最多 10 页、或 Apple RSS 返回空页。若界面显示「原始 100 条 · 清洗 100 条」，说明美国区 RSS 当前只返回了 100 条可用文本评论，去重后没有进一步减少。
 
 ### Q2：千问 PRD 生成请求失败，提示「fetch failed」或 `QWEN_NETWORK_ERROR`？
 

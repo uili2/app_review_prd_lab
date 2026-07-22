@@ -1,0 +1,102 @@
+[
+  {
+    "id": "demo-review-001",
+    "title": "Workout timer freezes",
+    "body": "Since version 4.2.0 the workout timer freezes halfway through a session and I lose the whole log.",
+    "rating": 1,
+    "version": "4.2.0",
+    "updatedAt": "2026-07-01T08:00:00.000Z",
+    "author": "offline-user-001",
+    "country": "us"
+  },
+  {
+    "id": "demo-review-002",
+    "title": "Subscription wall is confusing",
+    "body": "I cannot tell which workouts are free anymore. The subscription screen appears before I understand the value.",
+    "rating": 2,
+    "version": "4.2.0",
+    "updatedAt": "2026-07-02T10:15:00.000Z",
+    "author": "offline-user-002",
+    "country": "us"
+  },
+  {
+    "id": "demo-review-003",
+    "title": "Great guided sessions",
+    "body": "The guided sessions are clear and motivating. I like the new beginner plans.",
+    "rating": 5,
+    "version": "4.1.8",
+    "updatedAt": "2026-07-03T12:30:00.000Z",
+    "author": "offline-user-003",
+    "country": "us"
+  },
+  {
+    "id": "demo-review-004",
+    "title": "Hard to read during workouts",
+    "body": "The timer and next exercise text are too small when my phone is on the floor during a workout.",
+    "rating": 2,
+    "version": "4.2.0",
+    "updatedAt": "2026-07-04T09:45:00.000Z",
+    "author": "offline-user-004",
+    "country": "us"
+  },
+  {
+    "id": "demo-review-005",
+    "title": "Watch sync is unreliable",
+    "body": "Apple Watch sync misses completed workouts, so my weekly progress is wrong.",
+    "rating": 2,
+    "version": "4.2.0",
+    "updatedAt": "2026-07-05T16:20:00.000Z",
+    "author": "offline-user-005",
+    "country": "us"
+  },
+  {
+    "id": "demo-review-006",
+    "title": "Timer stops on lock screen",
+    "body": "If the screen locks, the workout timer stops and the rest timer never alerts me.",
+    "rating": 1,
+    "version": "4.2.0",
+    "updatedAt": "2026-07-06T18:05:00.000Z",
+    "author": "offline-user-006",
+    "country": "us"
+  },
+  {
+    "id": "demo-review-007",
+    "title": "Trial details need clarity",
+    "body": "The trial page does not explain renewal timing clearly, so I cancelled before starting.",
+    "rating": 2,
+    "version": "4.1.9",
+    "updatedAt": "2026-07-07T11:10:00.000Z",
+    "author": "offline-user-007",
+    "country": "us"
+  },
+  {
+    "id": "demo-review-008",
+    "title": "Reinstall helped",
+    "body": "Version 4.2.0 crashed once, but reinstalling fixed it and the workouts run fine now.",
+    "rating": 4,
+    "version": "4.2.0",
+    "updatedAt": "2026-07-08T14:40:00.000Z",
+    "author": "offline-user-008",
+    "country": "us"
+  },
+  {
+    "id": "demo-review-009",
+    "title": "",
+    "body": "",
+    "rating": 3,
+    "version": "4.2.0",
+    "updatedAt": "2026-07-09T08:00:00.000Z",
+    "author": "offline-user-009",
+    "country": "us"
+  },
+  {
+    "id": "demo-review-010",
+    "title": "Timer stops on lock screen",
+    "body": "If the screen locks, the workout timer stops and the rest timer never alerts me.",
+    "rating": 1,
+    "version": "4.2.0",
+    "updatedAt": "2026-07-06T18:05:00.000Z",
+    "author": "offline-user-006",
+    "country": "us"
+  }
+]
