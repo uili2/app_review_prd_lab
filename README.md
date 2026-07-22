@@ -104,19 +104,35 @@ npm install
 cp .env.example .env.local
 # 编辑 .env.local，填入 DASHSCOPE_API_KEY
 
-# 启动开发服务器
-npm run dev
+# 启动本地开发服务器
+npm run dev:local
 ```
 
 打开浏览器访问 `http://localhost:3000`。
+
+本项目是本地部署运行的 Next.js 应用：
+
+- 前端页面和后端 API routes 都运行在本机 Node.js/Next.js 进程中；
+- 不依赖 `runcode.win`、Vercel、Netlify 或任何外部托管执行环境；
+- App Store 评论采集只在用户点击采集时由本地 API 请求 Apple RSS；
+- 千问模型只在用户点击开始分析时由本地 API 请求 DashScope；
+- 外部网络不可用时，仍可启动页面、导入 `sample-data/` 中的 JSON/CSV，并查看 `offline-cache.sample.json` 中明确标识的离线演示结果。
+
+如果 `3000` 端口被占用，可以改用其他端口：
+
+```bash
+npm run dev -- -p 3100
+```
 
 ### 2.3 可用脚本
 
 | 脚本 | 作用 |
 | --- | --- |
 | `npm run dev` | 启动 Next.js 开发服务器 |
+| `npm run dev:local` | 固定绑定 `127.0.0.1:3000` 的本地开发服务器 |
 | `npm run build` | 生产构建 |
 | `npm run start` | 启动生产服务器（需先 build） |
+| `npm run start:local` | 固定绑定 `127.0.0.1:3000` 的本地生产服务器（需先 build） |
 | `npm run typecheck` | TypeScript 类型检查 |
 
 ### 2.4 Windows PowerShell 注意事项
